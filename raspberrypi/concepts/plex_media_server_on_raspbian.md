@@ -3,15 +3,16 @@
 ### Install Plex Media Server
 ```bash
 # Enable the Plex Media Server repository on Raspbian
-sudo vim /etc/apt/sources.list
-deb https://dev2day.de/pms/ jessie main
+echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
+
 
 # Add the GPG key for the repository.
-wget -O - https://dev2day.de/pms/dev2day-pms.gpg.key | sudo apt-key add -
+curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
+
 
 # Install Plex Media Server
 sudo apt-get update
-sudo apt-get install -t jessie plexmediaserver
+sudo apt-get install plexmediaserver
 
 # To avoid any annoying permission problems, change plex to run under the Pi user. To do this open the following file.
 sudo vim /etc/default/plexmediaserver
